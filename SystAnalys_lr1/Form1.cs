@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.IO;
@@ -111,6 +106,7 @@ namespace SystAnalys_lr1
             createAdjAndOut();
         }
         #region
+
         private void BtRandom_Click(object sender, EventArgs e)
         {
             /*Randomize2 rnd = new Randomize2();
@@ -142,8 +138,6 @@ namespace SystAnalys_lr1
             }
         }
         #endregion
-
-
 
         private void sheet_MouseClick(object sender, MouseEventArgs e)
         {
@@ -310,7 +304,26 @@ namespace SystAnalys_lr1
                     sOut += AMatrix[i, j] + " ";
                 listBoxMatrix.Items.Add(sOut);
             }
-        }
+
+            for (int i = 0; i < V.Count; ++i)
+            {
+                for (int j = 0; j < V.Count; ++j)
+                {
+                    if (i != j)
+                    {
+                        sOut = String.Format(" Путь из {0} в {1} = {2}", i + 1, j + 1, Find_Path.Find_Path_Graph(AMatrix, i, j));
+                        listBoxMatrix.Items.Add(sOut);
+                        //Console.WriteLine("Путь из {0} в {1} = {2}", i, j, Find_Path(a, i, j));
+                        //List<int> find_list = new List<int>() { i };
+                        //G.find_path(AMatrix, ref find_list, i, j);
+                        //sOut = String.Format(" Путь из {0} в {1} = {2}", i + 1, j + 1, find_list.Count - 1);
+                        //listBoxMatrix.Items.Add(sOut);
+                        //Console.WriteLine(" Путь из {0} в {1} = {2}", i, j, find_list.Count - 1);
+                    }
+                }
+            }
+
+        } 
 
         private void BTsave_Click(object sender, EventArgs e)
         {

@@ -52,6 +52,7 @@
       <DependentUpon>aboutForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeFile.cs" />
+    <Compile Include="Find.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

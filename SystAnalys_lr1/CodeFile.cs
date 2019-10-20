@@ -23,37 +23,6 @@ namespace SystAnalys_lr1
         }
         
     }
-    
-    /*class Randomize2 : Form1
-    {
-        public int Random(int count, ref bool  flag)
-        {
-            int count1 = count;
-            if (!flag)
-            {
-                listBoxMatrix.Items.Clear();
-                Random rnd = new Random();
-                while (count == count1)
-                    count1 = rnd.Next(1, 16);
-                listBoxMatrix.Items.AddRange(File.ReadAllLines("" + count1 + ".txt"));
-                flag = true;
-                Thread.Sleep(700);
-                sheet.Load("" + count1 + ".bmp");
-
-            }
-            else
-            {
-                listBoxMatrix.Items.Clear();
-                Random rnd = new Random();
-                while (count == count1)
-                    count1 = rnd.Next(1, 16);
-                listBoxMatrix.Items.AddRange(File.ReadAllLines("" + count1 + ".txt"));
-                Thread.Sleep(700);
-                sheet.Load("" + count1 + ".bmp");
-            }
-            return count;
-        }
-    }*/
 
     class Edge
     {
@@ -174,6 +143,27 @@ namespace SystAnalys_lr1
             {
                 matrix[E[i].v1, E[i].v2] = 1;
                 matrix[E[i].v2, E[i].v1] = 1;
+            }
+        }
+
+        // поиск путей в графе
+        public void find_path(int[,] matrix, ref List<int> predki, int tchk_start, int tchk_end)
+        {
+            if (matrix[tchk_start, tchk_end] == 1)
+            {
+                predki.Add(tchk_end);
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < matrix.GetLength(1); ++i)
+                {
+                    if (matrix[tchk_start, i] == 1 && predki.IndexOf(i) == -1 && predki.IndexOf(tchk_end) == -1)
+                    {
+                        predki.Add(i);
+                        find_path(matrix, ref predki, i, tchk_end);
+                    }
+                }
             }
         }
 
